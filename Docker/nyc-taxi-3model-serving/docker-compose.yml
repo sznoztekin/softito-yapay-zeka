@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # 🌐 1. KAPI: API Gateway (Nginx)
+  api_gateway:
+    image: nginx:alpine
+    container_name: api_gateway
+    volumes:
+      - ./api_gateway/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "8000:80"  # Lokal bilgisayarındaki 8000 portunu Nginx'in 80 portuna bağlar
+    depends_on:
+      - linear_service
+      - xgboost_service
+      - lgbm_service
+
+  # 📈 2. SERVİS: Linear Regression
+  linear_service:
+    build: ./models/linear_model
+    container_name: linear_service
+    environment:
+      - PORT=5001
+    ports:
+      - "5001:5001"
+
+  # ⚡ 3. SERVİS: XGBoost
+  xgboost_service:
+    build: ./models/xgboost_model
+    container_name: xgboost_service
+    environment:
+      - PORT=5002
+    ports:
+      - "5002:5002"
+
+  # 🚀 4. SERVİS: LightGBM
+  lgbm_service:
+    build: ./models/lgbm_model
+    container_name: lgbm_service
+    environment:
+      - PORT=5003
+    ports:
+      - "5003:5003"

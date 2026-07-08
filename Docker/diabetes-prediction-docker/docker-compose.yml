@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  ml_analysis_set:
+    build: .
+    container_name: diabetes_ml_container
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1

@@ -1,0 +1,33 @@
+# --- Python Ortamı ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+env/
+venv/
+.env
+
+# --- IDE ve Editörler ---
+.vscode/
+.idea/
+.DS_Store
+
+# --- Veri ve Model Dosyaları ---
+# Büyük boyutlu veri setlerini ve modelleri Git'e yüklememek için
+*.csv
+*.joblib
+*.pkl
+data/
+output/
+models/
+
+# --- Loglar ve Geçici Dosyalar ---
+*.log
+*.tmp
+.streamlit/
+.ipynb_checkpoints/
+
+# Büyük modelleri yok say
+*.pth
+*.joblib
